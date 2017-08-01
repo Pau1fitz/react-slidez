@@ -219,6 +219,7 @@ var Slideshow = function (_Component) {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
 			clearInterval(this.state.intervalId);
+			document.removeEventListener('keydown', this.handleKeyboard);
 		}
 	}, {
 		key: 'autoSlideshow',

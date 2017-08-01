@@ -1,6 +1,6 @@
 {
   "name": "react-slidez",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "React Slideshow Component",
   "main": "build/index.js",
   "keywords": [

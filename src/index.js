@@ -47,6 +47,7 @@ class Slideshow extends Component {
 
 	componentWillUnmount() {
 		clearInterval(this.state.intervalId);
+		document.removeEventListener('keydown', this.handleKeyboard);
 	}
 
 	autoSlideshow () {
