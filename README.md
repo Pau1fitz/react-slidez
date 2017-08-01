@@ -63,8 +63,7 @@ var Slideshow = require('react-slidez');
   slideInterval={2000}
   effect={'fade'}
   height={'100%'}
-  width={'100%'}
->
+  width={'100%'}>
 	<ComponentOne />
 	<ComponentTwo />
 	<Checkout />
