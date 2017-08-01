@@ -7,7 +7,7 @@ class Slideshow extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSlide: 0,
+			currentSlide: props.defaultIndex || 0,
 			slideInterval: props.slideInterval || 2000,
 			showIndex: props.showIndex || true,
 			showArrows: props.showArrows || true,

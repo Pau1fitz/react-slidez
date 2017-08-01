@@ -175,7 +175,7 @@ var Slideshow = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Slideshow.__proto__ || Object.getPrototypeOf(Slideshow)).call(this, props));
 
 		_this.state = {
-			currentSlide: 0,
+			currentSlide: props.defaultIndex || 0,
 			slideInterval: props.slideInterval || 2000,
 			showIndex: props.showIndex || true,
 			showArrows: props.showArrows || true,
