@@ -6,7 +6,9 @@ Customisable React Slideshow component.<g-emoji alias="sparkles" fallback-src="h
 
 ## Demo
 
+<g-emoji alias="muscle" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png" ios-version="6.0">💪</g-emoji>
 [Live demo](http://pau1fitz.github.io/react-slidez/)
+<g-emoji alias="muscle" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png" ios-version="6.0">💪</g-emoji>
 
 
 ## Installation
