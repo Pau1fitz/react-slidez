@@ -56,9 +56,9 @@ You can also pass other components to the `Slideshow` component as children. All
 var Slideshow = require('react-slidez');
 
 <Slideshow>
-	<ComponentOne />
-	<ComponentTwo />
-	<Checkout />
+  <ComponentOne />
+  <ComponentTwo />
+  <Checkout />
 </Slideshow>
 
 ```
