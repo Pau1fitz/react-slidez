@@ -117,6 +117,24 @@ body {
 	}
 }
 
+.showing-bounce {
+	opacity: 1;
+	animation-duration: 1s;
+	animation-name: slide-bounce;
+}
+
+@keyframes slide-bounce {
+	0%{
+		left: 100%;
+	}
+	50%{
+		left: -20%;
+	}
+	100%{
+		left: 0;
+	}
+}
+
 .show-index {
 	color: #fff;
 	position: absolute;
