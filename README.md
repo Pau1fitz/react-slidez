@@ -4,7 +4,7 @@
 <p align="center">
   <img src="https://github.com/Pau1fitz/react-slidez/blob/master/slidez.png" width="250"/>
  </p>
- <p>
+ <p align="center">
   <g-emoji alias="sparkles" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png" ios-version="6.0">✨</g-emoji>
 Customisable React Slideshow component.<g-emoji alias="sparkles" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png" ios-version="6.0">✨</g-emoji>
 </p>
