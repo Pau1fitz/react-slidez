@@ -181,8 +181,8 @@ var Slideshow = function (_Component) {
 			showArrows: props.showArrows || false,
 			effect: props.effect || false,
 			slides: props.slides || [],
-			autoplay: props.autoplay || false
-
+			autoplay: props.autoplay || false,
+			enableKeyboard: props.enableKeyboard || true
 		};
 
 		_this.runSlideShow = _this.runSlideShow.bind(_this);
@@ -190,6 +190,8 @@ var Slideshow = function (_Component) {
 		_this.restartSlideshow = _this.restartSlideshow.bind(_this);
 		_this.increaseCount = _this.increaseCount.bind(_this);
 		_this.decreaseCount = _this.decreaseCount.bind(_this);
+		_this.enableKeyboard = _this.enableKeyboard.bind(_this);
+
 		return _this;
 	}
 
@@ -198,6 +200,13 @@ var Slideshow = function (_Component) {
 		value: function componentDidMount() {
 
 			if (this.state.autoplay) this.runSlideShow();
+
+			if (this.state.enableKeyboard) document.addEventListener('keydown', this.handleKeyboard);
+		}
+	}, {
+		key: 'handleKeyboard',
+		value: function handleKeyboard(e) {
+			e.keyCode === 37 ? this.decreaseCount() : e.keyCode === 39 ? this.increaseCount() : null;
 		}
 	}, {
 		key: 'runSlideShow',
@@ -303,7 +312,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "html,\nbody {\n\tpadding: 0;\n\tmargin: 0;\n\tbackground: #000;\n}\n\n.slideshow-container {\n\tposition: absolute;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.slides {\n\tposition: relative;\n\theight: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tlist-style-type: none;\n\toverflow: hidden;\n}\n\n.slide {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\topacity: 0;\n\tz-index: 1;\n\tpadding: 0;\n\tmargin: 0;\n\tbackground-repeat: no-repeat;\n\tbackground-size: cover;\n\tbackground-position: center;\n}\n\n.showing-fade {\n\topacity: 1;\n\tz-index: 2;\n\tanimation-duration: 1s;\n\tanimation-name: slide-fade;\n}\n\n@keyframes slide-fade {\n\tfrom {\n\t\topacity: 0;\n\t}\n\n\tto {\n\t\topacity: 1;\n\t}\n}\n\n.showing-right {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-right;\n}\n\n\n@keyframes slide-right {\n\tfrom {\n\t\tleft: -50%;\n\t}\n\n\tto {\n\t\tleft: 0;\n\t}\n}\n\n.showing-left {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-left;\n}\n\n@keyframes slide-left {\n\tfrom {\n\t\tleft: 100%;\n\t}\n\n\tto {\n\t\tleft: 0;\n\t}\n}\n\n.showing-top {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-top;\n}\n\n@keyframes slide-top {\n\tfrom {\n\t\ttop: 100%;\n\t}\n\n\tto {\n\t\ttop: 0;\n\t}\n}\n\n.showing-bottom {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-bottom;\n}\n\n@keyframes slide-bottom {\n\tfrom {\n\t\ttop: -100%;\n\t}\n\n\tto {\n\t\ttop: 0;\n\t}\n}\n\n.show-index {\n\tcolor: #fff;\n\tposition: absolute;\n\tbottom: 0;\n\tz-index: 100;\n\tleft: 50%;\n\tfont-size: 28px;\n\tfont-family: 'Slabo 27px', serif;\n}\n\nbutton:focus {\n    outline: none;\n}\n\n.btn-arrow {\n\tcolor: transparent;\n\tdisplay: block;\n\tfont-size: 5px;\n\tline-height: 0;\n\t-moz-transition: all 0.3s;\n\t-o-transition: all 0.3s;\n\t-webkit-transition: all 0.3s;\n\ttransition: all 0.3s;\n\tposition: absolute;\n\ttop: 50%;\n\tz-index: 10;\n\tcursor: pointer;\n\theight: 50px;\n\twidth: 50px;\n\tborder-radius: 50%;\n\tpadding: 5px;\n}\n\n.btn-arrow:hover, .btn-arrow:focus {\n\tbackground: rgba(256, 256, 256, 0.1);\n}\n\n.btn-arrow:hover::before, .btn-arrow:hover::after, .btn-arrow:focus::before, .btn-arrow:focus::after {\n\tbackground: rgba(256, 256, 256, 0.5);\n}\n\n.btn-arrow::before {\n\tcontent: '';\n\tdisplay: block;\n\tbackground: rgba(256,256,256, 0.6);\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 6em;\n\theight: 2em;\n}\n\n.btn-arrow::after {\n\tcontent: '';\n\tdisplay: block;\n\tbackground: rgba(256,256,256, 0.6);\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 2em;\n\theight: 6em;\n}\n.btn-arrow.btn-arrow-left {\n\t-moz-transform: rotate(-45deg);\n\t-ms-transform: rotate(-45deg);\n\t-webkit-transform: rotate(-45deg);\n\ttransform: rotate(-45deg);\n\tleft: 5%;\n}\n.btn-arrow.btn-arrow-left::before, .btn-arrow.btn-arrow-left::after {\n\ttop: 18px;\n\tleft: 18px;\n}\n.btn-arrow.btn-arrow-right {\n\t-moz-transform: rotate(135deg);\n\t-ms-transform: rotate(135deg);\n\t-webkit-transform: rotate(135deg);\n\ttransform: rotate(135deg);\n\tright: 5%;\n}\n.btn-arrow.btn-arrow-right::before, .btn-arrow.btn-arrow-right::after {\n\ttop: 18px;\n\tleft: 18px;\n}\n", ""]);
+exports.push([module.i, "html,\nbody {\n\tpadding: 0;\n\tmargin: 0;\n\tbackground: #000;\n}\n\n.slideshow-container {\n\tposition: absolute;\n\theight: 100%;\n\twidth: 100%;\n}\n\n.slides {\n\tposition: relative;\n\theight: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tlist-style-type: none;\n\toverflow: hidden;\n}\n\n.slide {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\topacity: 0;\n\tz-index: 1;\n\tpadding: 0;\n\tmargin: 0;\n\tbackground-repeat: no-repeat;\n\tbackground-size: cover;\n\tbackground-position: center;\n}\n\n.showing-fade {\n\topacity: 1;\n\tz-index: 2;\n\tanimation-duration: 1s;\n\tanimation-name: slide-fade;\n}\n\n@keyframes slide-fade {\n\tfrom {\n\t\topacity: 0;\n\t}\n\n\tto {\n\t\topacity: 1;\n\t}\n}\n\n.showing-right {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-right;\n}\n\n\n@keyframes slide-right {\n\tfrom {\n\t\tleft: -50%;\n\t}\n\n\tto {\n\t\tleft: 0;\n\t}\n}\n\n.showing-left {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-left;\n}\n\n@keyframes slide-left {\n\tfrom {\n\t\tleft: 100%;\n\t}\n\n\tto {\n\t\tleft: 0;\n\t}\n}\n\n.showing-top {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-top;\n}\n\n@keyframes slide-top {\n\tfrom {\n\t\ttop: 100%;\n\t}\n\n\tto {\n\t\ttop: 0;\n\t}\n}\n\n.showing-bottom {\n\topacity: 1;\n\tanimation-duration: 1s;\n\tanimation-name: slide-bottom;\n}\n\n@keyframes slide-bottom {\n\tfrom {\n\t\ttop: -100%;\n\t}\n\n\tto {\n\t\ttop: 0;\n\t}\n}\n\n.show-index {\n\tcolor: #fff;\n\tposition: absolute;\n\tbottom: 0;\n\tz-index: 100;\n\tleft: 50%;\n\tfont-size: 28px;\n\tfont-family: 'Slabo 27px', serif;\n}\n\nbutton:focus {\n    outline: none;\n}\n\n.btn-arrow {\n\tcolor: transparent;\n\tdisplay: block;\n\tfont-size: 5px;\n\tline-height: 0;\n\t-moz-transition: all 0.3s;\n\t-o-transition: all 0.3s;\n\t-webkit-transition: all 0.3s;\n\ttransition: all 0.3s;\n\tposition: absolute;\n\ttop: 50%;\n\tz-index: 10;\n\tcursor: pointer;\n\theight: 50px;\n\twidth: 50px;\n\tborder-radius: 50%;\n\tpadding: 5px;\n\tz-index: 10000;\n}\n\n.btn-arrow:hover, .btn-arrow:focus {\n\tbackground: rgba(256, 256, 256, 0.1);\n}\n\n.btn-arrow:hover::before, .btn-arrow:hover::after, .btn-arrow:focus::before, .btn-arrow:focus::after {\n\tbackground: rgba(256, 256, 256, 0.5);\n}\n\n.btn-arrow::before {\n\tcontent: '';\n\tdisplay: block;\n\tbackground: rgba(256,256,256, 0.6);\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 6em;\n\theight: 2em;\n}\n\n.btn-arrow::after {\n\tcontent: '';\n\tdisplay: block;\n\tbackground: rgba(256,256,256, 0.6);\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 2em;\n\theight: 6em;\n}\n.btn-arrow.btn-arrow-left {\n\t-moz-transform: rotate(-45deg);\n\t-ms-transform: rotate(-45deg);\n\t-webkit-transform: rotate(-45deg);\n\ttransform: rotate(-45deg);\n\tleft: 5%;\n}\n.btn-arrow.btn-arrow-left::before, .btn-arrow.btn-arrow-left::after {\n\ttop: 18px;\n\tleft: 18px;\n}\n.btn-arrow.btn-arrow-right {\n\t-moz-transform: rotate(135deg);\n\t-ms-transform: rotate(135deg);\n\t-webkit-transform: rotate(135deg);\n\ttransform: rotate(135deg);\n\tright: 5%;\n}\n.btn-arrow.btn-arrow-right::before, .btn-arrow.btn-arrow-right::after {\n\ttop: 18px;\n\tleft: 18px;\n}\n", ""]);
 
 // exports
 

@@ -148,6 +148,7 @@ button:focus {
 	width: 50px;
 	border-radius: 50%;
 	padding: 5px;
+	z-index: 10000;
 }
 
 .btn-arrow:hover, .btn-arrow:focus {

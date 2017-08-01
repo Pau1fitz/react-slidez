@@ -13,8 +13,8 @@ class Slideshow extends Component {
 			showArrows: props.showArrows || false,
 			effect: props.effect || false,
 			slides: props.slides || [],
-			autoplay: props.autoplay || false
-
+			autoplay: props.autoplay || false,
+			enableKeyboard: props.enableKeyboard || true
 		};
 
 		this.runSlideShow = this.runSlideShow.bind(this);
@@ -22,12 +22,21 @@ class Slideshow extends Component {
 		this.restartSlideshow = this.restartSlideshow.bind(this);
 		this.increaseCount = this.increaseCount.bind(this);
 		this.decreaseCount = this.decreaseCount.bind(this);
+		this.enableKeyboard = this.enableKeyboard.bind(this);
+
 	}
 
 	componentDidMount() {
 
 		if(this.state.autoplay)
 			this.runSlideShow();
+
+		if(this.state.enableKeyboard)
+			document.addEventListener('keydown', this.handleKeyboard);
+	}
+
+	handleKeyboard (e) {
+		e.keyCode === 37 ? this.decreaseCount() : e.keyCode === 39 ? this.increaseCount() : null;
 	}
 
 	runSlideShow () {
