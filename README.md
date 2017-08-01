@@ -5,14 +5,10 @@ Customisable React Slideshow component.
 
 ## Demo
 
-Live demo: [pau1fitz.github.io/slideshow](http://pau1fitz.github.io/slideshow/)
+[Live demo](http://pau1fitz.github.io/react-slidez/)
 
 
 ## Installation
-
-The easiest way to use react-slidezz is to install it from NPM and include it in your own React build process (using [Browserify](http://browserify.org), [Webpack](http://webpack.github.io/), etc).
-
-You can also use the standalone build by including `build/index.js` in your page. If you use this, make sure you have already included React, and it is available as a global variable.
 
 ```
 npm install react-slidez --save
@@ -56,6 +52,6 @@ hich will also watch the component source), run `npm start`. If you just want to
 
 ## License
 
-MIT License
+[MIT License](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2017 Paul Fitzgerald.
