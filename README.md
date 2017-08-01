@@ -33,7 +33,7 @@ npm install react-slidez --save
 
 
 ```js
-var Slideshow = require('react-slidezz');
+var Slideshow = require('react-slidez');
 
 <Slideshow
   showIndex
