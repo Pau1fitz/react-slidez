@@ -12,7 +12,7 @@ class Slideshow extends Component {
 			showIndex: props.showIndex || false,
 			showArrows: props.showArrows || false,
 			effect: props.effect || false,
-			slides: props.slides || [],
+			slides: props.slides.length > 0 ? props.slides : props.children,
 			autoplay: props.autoplay || false,
 			enableKeyboard: props.enableKeyboard || true
 		};
@@ -23,7 +23,6 @@ class Slideshow extends Component {
 		this.increaseCount = this.increaseCount.bind(this);
 		this.decreaseCount = this.decreaseCount.bind(this);
 		this.enableKeyboard = this.enableKeyboard.bind(this);
-
 	}
 
 	componentDidMount() {
@@ -52,7 +51,7 @@ class Slideshow extends Component {
 
 	autoSlideshow () {
 		this.setState({
-			currentSlide: (this.state.currentSlide + 1) % this.props.slides.length
+			currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
 		});
 	}
 
@@ -65,7 +64,7 @@ class Slideshow extends Component {
 
 		this.state.autoplay ? this.restartSlideshow() : null;
 		this.setState({
-			currentSlide: (this.state.currentSlide + 1) % this.props.slides.length
+			currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
 		});
 	}
 
@@ -73,7 +72,7 @@ class Slideshow extends Component {
 		this.state.autoplay ? this.restartSlideshow() : null;
 
 		let currentSlide;
-		currentSlide = this.state.currentSlide === 0 ? this.props.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
+		currentSlide = this.state.currentSlide === 0 ? this.state.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
 		this.setState({
 			currentSlide
 		});
@@ -84,10 +83,17 @@ class Slideshow extends Component {
 		const { slides, showIndex, effect, showArrows } = this.state;
 
 		let slideEffect = effect === undefined ? 'fade' : effect;
+		let slideShowSlides;
 
-		let slideShowSlides = slides.map((slide, i) => {
-			return <li className = {`slide ${effect} ${(this.state.currentSlide === i ? "showing-"  + slideEffect  : "")}`} key={i} style={{backgroundImage: `url(${slide})`}}></li>
-		});
+		if(!this.props.children){
+			slideShowSlides = slides.map((slide, i) => {
+				return <li className = {`slide ${effect} ${(this.state.currentSlide === i ? "showing-"  + slideEffect  : "")}`} key={i} style={{backgroundImage: `url(${slide})`}}></li>
+			});
+		} else {
+			slideShowSlides = slides.map((slide, i) => {
+				return <li className = {`slide ${effect} ${(this.state.currentSlide === i ? "showing-"  + slideEffect  : "")}`} key={i}>{slide}</li>
+			});
+		}
 
 		return (
 

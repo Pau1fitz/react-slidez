@@ -180,7 +180,7 @@ var Slideshow = function (_Component) {
 			showIndex: props.showIndex || false,
 			showArrows: props.showArrows || false,
 			effect: props.effect || false,
-			slides: props.slides || [],
+			slides: props.slides.length > 0 ? props.slides : props.children,
 			autoplay: props.autoplay || false,
 			enableKeyboard: props.enableKeyboard || true
 		};
@@ -191,7 +191,6 @@ var Slideshow = function (_Component) {
 		_this.increaseCount = _this.increaseCount.bind(_this);
 		_this.decreaseCount = _this.decreaseCount.bind(_this);
 		_this.enableKeyboard = _this.enableKeyboard.bind(_this);
-
 		return _this;
 	}
 
@@ -225,7 +224,7 @@ var Slideshow = function (_Component) {
 		key: 'autoSlideshow',
 		value: function autoSlideshow() {
 			this.setState({
-				currentSlide: (this.state.currentSlide + 1) % this.props.slides.length
+				currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
 			});
 		}
 	}, {
@@ -240,7 +239,7 @@ var Slideshow = function (_Component) {
 
 			this.state.autoplay ? this.restartSlideshow() : null;
 			this.setState({
-				currentSlide: (this.state.currentSlide + 1) % this.props.slides.length
+				currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
 			});
 		}
 	}, {
@@ -249,7 +248,7 @@ var Slideshow = function (_Component) {
 			this.state.autoplay ? this.restartSlideshow() : null;
 
 			var currentSlide = void 0;
-			currentSlide = this.state.currentSlide === 0 ? this.props.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
+			currentSlide = this.state.currentSlide === 0 ? this.state.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
 			this.setState({
 				currentSlide: currentSlide
 			});
@@ -267,10 +266,21 @@ var Slideshow = function (_Component) {
 
 
 			var slideEffect = effect === undefined ? 'fade' : effect;
+			var slideShowSlides = void 0;
 
-			var slideShowSlides = slides.map(function (slide, i) {
-				return _react2.default.createElement('li', { className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? "showing-" + slideEffect : ""), key: i, style: { backgroundImage: 'url(' + slide + ')' } });
-			});
+			if (!this.props.children) {
+				slideShowSlides = slides.map(function (slide, i) {
+					return _react2.default.createElement('li', { className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? "showing-" + slideEffect : ""), key: i, style: { backgroundImage: 'url(' + slide + ')' } });
+				});
+			} else {
+				slideShowSlides = slides.map(function (slide, i) {
+					return _react2.default.createElement(
+						'li',
+						{ className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? "showing-" + slideEffect : ""), key: i },
+						slide
+					);
+				});
+			}
 
 			return _react2.default.createElement(
 				'div',

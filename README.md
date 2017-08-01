@@ -50,6 +50,28 @@ var Slideshow = require('react-slidez');
 
 ```
 
+You can also pass other components to the `Slideshow` component as children.
+
+```js
+var Slideshow = require('react-slidez');
+
+<Slideshow
+  showIndex
+  showArrows
+  autoplay
+  enableKeyboard
+  slideInterval={2000}
+  effect={'fade'}
+  height={'100%'}
+  width={'100%'}
+>
+	<ComponentOne />
+	<ComponentTwo />
+	<Checkout />
+</Slideshow>
+
+```
+
 
 ## License
 
