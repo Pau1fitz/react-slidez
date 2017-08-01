@@ -1,6 +1,7 @@
 # React Slidez
 
-Customisable React Slideshow component.
+<g-emoji alias="sparkles" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png" ios-version="6.0">✨</g-emoji>
+Customisable React Slideshow component.<g-emoji alias="sparkles" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2728.png" ios-version="6.0">✨</g-emoji>
 
 
 ## Demo
