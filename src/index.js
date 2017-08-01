@@ -9,12 +9,12 @@ class Slideshow extends Component {
 		this.state = {
 			currentSlide: 0,
 			slideInterval: props.slideInterval || 2000,
-			showIndex: props.showIndex || false,
-			showArrows: props.showArrows || false,
-			effect: props.effect || false,
-			slides: props.slides.length > 0 ? props.slides : props.children,
-			autoplay: props.autoplay || false,
-			enableKeyboard: props.enableKeyboard || true
+			showIndex: props.showIndex || true,
+			showArrows: props.showArrows || true,
+			effect: props.effect || true,
+			autoplay: props.autoplay || true,
+			enableKeyboard: props.enableKeyboard || true,
+			slides: props.slides.length > 0 ? props.slides : props.children
 		};
 
 		this.runSlideShow = this.runSlideShow.bind(this);
