@@ -50,20 +50,12 @@ var Slideshow = require('react-slidez');
 
 ```
 
-You can also pass other components to the `Slideshow` component as children.
+You can also pass other components to the `Slideshow` component as children. All the same properties as above are available.
 
 ```js
 var Slideshow = require('react-slidez');
 
-<Slideshow
-  showIndex
-  showArrows
-  autoplay
-  enableKeyboard
-  slideInterval={2000}
-  effect={'fade'}
-  height={'100%'}
-  width={'100%'}>
+<Slideshow>
 	<ComponentOne />
 	<ComponentTwo />
 	<Checkout />
