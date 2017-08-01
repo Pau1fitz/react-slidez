@@ -1,6 +1,6 @@
 # React Slidez
 
-Customisable React Slideshow component. Pass the component an array of images, or you can even pass it other components.
+Customisable React Slideshow component.
 
 
 ## Demo
