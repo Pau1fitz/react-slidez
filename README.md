@@ -22,6 +22,7 @@ npm install react-slidez --save
 | showIndex | Show the index of the current slide | Boolean |
 | showArrows | Show arrows to navigate through the slides | Boolean |
 | autoplay | Select whether you want the slideshow to autoplay or not | Boolean |
+| enableKeyboard | Select whether you want to allow the user change the slides with the keyboard | Boolean |
 | slideInterval={2000}| Dictate the speed in ms at which the slides change | Integer |
 | slides={slides} | The slides you pass into the component | Array |
 | effect |Choose the animation effect of your slideshow. Options include `fade`, `left`, `top`, `right` | String |
@@ -39,6 +40,7 @@ var Slideshow = require('react-slidez');
   showIndex
   showArrows
   autoplay
+  enableKeyboard
   slideInterval={2000}
   slides=['1.jpg', '2.jpg']
   effect={'fade'}
