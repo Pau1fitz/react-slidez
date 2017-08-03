@@ -190,7 +190,7 @@ var Slideshow = function (_Component) {
 		_this.restartSlideshow = _this.restartSlideshow.bind(_this);
 		_this.increaseCount = _this.increaseCount.bind(_this);
 		_this.decreaseCount = _this.decreaseCount.bind(_this);
-		_this.enableKeyboard = _this.enableKeyboard.bind(_this);
+		_this.handleKeyboard = _this.handleKeyboard.bind(_this);
 		return _this;
 	}
 
