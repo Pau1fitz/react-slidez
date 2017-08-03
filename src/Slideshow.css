@@ -117,18 +117,36 @@ body {
 	}
 }
 
-.showing-bounce {
+.showing-bounce-left {
 	opacity: 1;
 	animation-duration: 1s;
-	animation-name: slide-bounce;
+	animation-name: slide-bounce-left;
 }
 
-@keyframes slide-bounce {
+@keyframes slide-bounce-left {
 	0%{
 		left: 100%;
 	}
 	50%{
 		left: -20%;
+	}
+	100%{
+		left: 0;
+	}
+}
+
+.showing-bounce-right {
+	opacity: 1;
+	animation-duration: 1s;
+	animation-name: slide-bounce-right;
+}
+
+@keyframes slide-bounce-right {
+	0%{
+		left: -100%;
+	}
+	50%{
+		left: 20%;
 	}
 	100%{
 		left: 0;

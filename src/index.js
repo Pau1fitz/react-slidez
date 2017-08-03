@@ -63,6 +63,14 @@ class Slideshow extends Component {
 
 	increaseCount () {
 
+		this.state.effect === 'left' ?
+		this.setState({
+			effect: 'right'
+		}) : this.state.effect === 'bounce-left' ?
+		this.setState({
+			effect: 'bounce-right'
+		}) : null;
+
 		this.state.autoplay ? this.restartSlideshow() : null;
 		this.setState({
 			currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
@@ -70,6 +78,14 @@ class Slideshow extends Component {
 	}
 
 	decreaseCount () {
+
+		this.state.effect === 'right' ? this.setState({
+			effect: 'left'
+		}) : this.state.effect === 'bounce-right' ?
+		this.setState({
+			effect: 'bounce-left'
+		}) : null;
+
 		this.state.autoplay ? this.restartSlideshow() : null;
 
 		let currentSlide;
