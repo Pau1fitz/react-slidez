@@ -45,7 +45,7 @@ npm install react-slidez --save
 
 ```js
 
-//ES 5 syntax
+//ES5 syntax
 var Slideshow = require('react-slidez');
 
 //ES6 syntax
@@ -69,7 +69,7 @@ import Slideshow from 'react-slidez';
 You can also pass other components to the `Slideshow` component as children. All the same properties as above are available.
 
 ```js
-//ES 5 syntax
+//ES5 syntax
 var Slideshow = require('react-slidez');
 
 //ES6 syntax
@@ -88,4 +88,4 @@ import Slideshow from 'react-slidez';
 
 [MIT License](https://opensource.org/licenses/MIT)
 
-Copyright (c) 2017 Paul Fitzgerald.
+Copyright (c) 2017 Paul Fitzgerald
