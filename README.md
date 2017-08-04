@@ -45,11 +45,8 @@ npm install react-slidez --save
 
 ```js
 
-//ES5 syntax
 var Slideshow = require('react-slidez');
 
-//ES6 syntax
-import Slideshow from 'react-slidez';
 
 <Slideshow
   showIndex
@@ -69,11 +66,8 @@ import Slideshow from 'react-slidez';
 You can also pass other components to the `Slideshow` component as children. All the same properties as above are available.
 
 ```js
-//ES5 syntax
-var Slideshow = require('react-slidez');
 
-//ES6 syntax
-import Slideshow from 'react-slidez';
+var Slideshow = require('react-slidez');
 
 <Slideshow>
   <ComponentOne />
