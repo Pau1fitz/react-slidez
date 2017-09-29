@@ -47,7 +47,6 @@ npm install react-slidez --save
 
 var Slideshow = require('react-slidez');
 
-
 <Slideshow
   showIndex
   showArrows
