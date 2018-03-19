@@ -153,7 +153,7 @@ body {
 	}
 }
 
-.show-index {
+.show-index.is-text{
 	color: #fff;
 	position: absolute;
 	bottom: 0;
@@ -161,6 +161,30 @@ body {
 	left: 50%;
 	font-size: 28px;
 	font-family: 'Slabo 27px', serif;
+}
+
+.show-index.is-dot {
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	z-index: 100;
+	left: 50%;
+	font-size: 28px;
+	font-family: 'Slabo 27px', serif;
+	display: flex;
+}
+
+.show-index.is-dot .dot {
+	width: 10px;
+	height: 10px;
+	margin: 0 3px 3rem 3px;
+	background-color: white;
+	border-radius: 50%;
+	opacity: 0.5;
+} 
+
+.show-index.is-dot .dot.is-active {
+	opacity: 1;
 }
 
 button:focus {

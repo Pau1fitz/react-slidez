@@ -10,6 +10,7 @@ class Slideshow extends Component {
 			currentSlide: (typeof props.defaultIndex === 'undefined') ? 0 : props.defaultIndex,
 			slideInterval: (typeof props.slideInterval === 'undefined') ? 2000 : props.slideInterval,
 			showIndex: (typeof props.showIndex === 'undefined') ? true : props.showIndex,
+			useDotIndex: (typeof props.useDotIndex === 'undefined') ? false : props.useDotIndex,
 			showArrows: (typeof props.showArrows === 'undefined') ? true : props.showArrows,
 			effect: (typeof props.effect === 'undefined') ? true : props.effect,
 			autoplay: (typeof props.autoplay === 'undefined') ? true : props.autoplay,
@@ -97,10 +98,11 @@ class Slideshow extends Component {
 
 	render() {
 
-		const { slides, showIndex, effect, showArrows } = this.state;
+		const { slides, showIndex, useDotIndex, effect, showArrows } = this.state;
 
 		let slideEffect = effect === undefined ? 'fade' : effect;
 		let slideShowSlides;
+		let slideShowIndex;
 
 		if(!this.props.children){
 			slideShowSlides = slides.map((slide, i) => {
@@ -110,6 +112,22 @@ class Slideshow extends Component {
 			slideShowSlides = slides.map((slide, i) => {
 				return <li className = {`slide ${effect} ${(this.state.currentSlide === i ? "showing-"  + slideEffect  : "")}`} key={i}>{slide}</li>
 			});
+		}
+
+		if(useDotIndex){
+			slideShowIndex = (
+				<div className="show-index is-dot">
+					{slides.map((slide, i) => {
+						return <span className={`dot ${(this.state.currentSlide === i ? "is-active" : "")}`} key={`dot${i}`}></span>
+					})}
+				</div>
+			)
+		}else{
+			slideShowIndex = (
+				<div className="show-index is-text">
+					<p>{`${this.state.currentSlide + 1} / ${slides.length}`}</p>
+				</div>
+			)
 		}
 
 		return (
@@ -124,11 +142,7 @@ class Slideshow extends Component {
 						<Arrows decreaseCount={this.decreaseCount} increaseCount={this.increaseCount}/>
 					)}
 
-					{showIndex && (
-						<div className="show-index">
-							<p>{`${this.state.currentSlide + 1} / ${slides.length}`}</p>
-						</div>
-					)}
+					{showIndex && slideShowIndex}
 				</div>
 			</div>
 
