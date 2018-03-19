@@ -7,14 +7,14 @@ class Slideshow extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSlide: props.defaultIndex || 0,
-			slideInterval: props.slideInterval || 2000,
-			showIndex: props.showIndex || true,
-			showArrows: props.showArrows || true,
-			effect: props.effect || true,
-			autoplay: props.autoplay || true,
-			enableKeyboard: props.enableKeyboard || true,
-			slides: props.slides.length > 0 ? props.slides : props.children
+			currentSlide: (typeof props.defaultIndex === 'undefined') ? 0 : props.defaultIndex,
+			slideInterval: (typeof props.slideInterval === 'undefined') ? 2000 : props.slideInterval,
+			showIndex: (typeof props.showIndex === 'undefined') ? true : props.showIndex,
+			showArrows: (typeof props.showArrows === 'undefined') ? true : props.showArrows,
+			effect: (typeof props.effect === 'undefined') ? true : props.effect,
+			autoplay: (typeof props.autoplay === 'undefined') ? true : props.autoplay,
+			enableKeyboard: (typeof props.enableKeyboard === 'undefined') ? true : props.enableKeyboard,
+			slides: (typeof props.slides !== 'undefined' && props.slides.length > 0) ? props.slides : props.children
 		};
 
 		this.runSlideShow = this.runSlideShow.bind(this);
