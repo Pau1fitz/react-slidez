@@ -32,6 +32,7 @@ npm install react-slidez --save
 | showArrows | Show arrows to navigate through the slides | Boolean | `true` |
 | autoplay | Select whether you want the slideshow to autoplay or not | Boolean | `true` |
 | enableKeyboard | Select whether you want to allow the user change the slides with the keyboard | Boolean | `true` |
+| useDotIndex | Select whether you want the index to be dots or numbers | Boolean | `false` |
 | slideInterval | Dictate the speed in ms at which the slides change | Integer | `2000` |
 | defaultIndex | Choose the index that you wish to start at | Integer | `0` |
 | slides | The slides you pass into the component. This can be an array of images, or other components which are passed as children. See example below. | Array | No default |
@@ -52,6 +53,7 @@ var Slideshow = require('react-slidez');
   showArrows
   autoplay
   enableKeyboard
+  useDotIndex
   slideInterval={2000}
   defaultIndex={1}
   slides=['1.jpg', '2.jpg']
