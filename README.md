@@ -39,7 +39,7 @@ npm install react-slidez --save
 ## Usage
 
 ```js
-var Slideshow = require('react-slidez');
+const Slideshow = require('react-slidez');
 
 <Slideshow
   showIndex
@@ -59,7 +59,7 @@ var Slideshow = require('react-slidez');
 You can also pass other components to the `Slideshow` component as children. All the same properties as above are available.
 
 ```js
-var Slideshow = require("react-slidez");
+const Slideshow = require("react-slidez");
 
 <Slideshow>
   <ComponentOne />
