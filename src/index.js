@@ -184,15 +184,17 @@ class Slideshow extends Component {
 }
 
 Slideshow.defaultProps = {
-  defaultIndex: 0,
-  slideInterval: 2000,
-  showIndex: true,
-  useDotIndex: false,
+  showIndex: false,
   showArrows: true,
-  effect: true,
   autoplay: true,
   enableKeyboard: true,
-  slides: []
+  useDotIndex: false,
+  slideInterval: 2000,
+  defaultIndex: 0,
+  effect: 'fade',
+  slides: [],
+  height: '100%',
+  width: '100%'
 };
 
 export default Slideshow;

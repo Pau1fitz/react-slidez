@@ -112,7 +112,7 @@ module.exports = require("react");
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _react = __webpack_require__(1);
@@ -124,13 +124,18 @@ __webpack_require__(0);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Arrows = function Arrows(props) {
-
-	return _react2.default.createElement(
-		'div',
-		{ className: 'arrows' },
-		_react2.default.createElement('span', { onClick: props.decreaseCount, className: 'arrow btn-arrow btn-arrow-left' }),
-		_react2.default.createElement('span', { onClick: props.increaseCount, className: 'arrow btn-arrow btn-arrow-right' })
-	);
+  return _react2.default.createElement(
+    'div',
+    { className: 'arrows' },
+    _react2.default.createElement('span', {
+      onClick: props.decreaseCount,
+      className: 'arrow btn-arrow btn-arrow-left'
+    }),
+    _react2.default.createElement('span', {
+      onClick: props.increaseCount,
+      className: 'arrow btn-arrow btn-arrow-right'
+    })
+  );
 };
 
 exports.default = Arrows;
@@ -143,7 +148,7 @@ exports.default = Arrows;
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -167,178 +172,208 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Slideshow = function (_Component) {
-	_inherits(Slideshow, _Component);
+  _inherits(Slideshow, _Component);
 
-	function Slideshow(props) {
-		_classCallCheck(this, Slideshow);
+  function Slideshow(props) {
+    _classCallCheck(this, Slideshow);
 
-		var _this = _possibleConstructorReturn(this, (Slideshow.__proto__ || Object.getPrototypeOf(Slideshow)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Slideshow.__proto__ || Object.getPrototypeOf(Slideshow)).call(this, props));
 
-		_this.state = {
-			currentSlide: typeof props.defaultIndex === 'undefined' ? 0 : props.defaultIndex,
-			slideInterval: typeof props.slideInterval === 'undefined' ? 2000 : props.slideInterval,
-			showIndex: typeof props.showIndex === 'undefined' ? true : props.showIndex,
-			useDotIndex: typeof props.useDotIndex === 'undefined' ? false : props.useDotIndex,
-			showArrows: typeof props.showArrows === 'undefined' ? true : props.showArrows,
-			effect: typeof props.effect === 'undefined' ? true : props.effect,
-			autoplay: typeof props.autoplay === 'undefined' ? true : props.autoplay,
-			enableKeyboard: typeof props.enableKeyboard === 'undefined' ? true : props.enableKeyboard,
-			slides: typeof props.slides !== 'undefined' && props.slides.length > 0 ? props.slides : props.children
-		};
+    _this.state = {
+      currentSlide: props.defaultIndex,
+      slideInterval: props.slideInterval,
+      showIndex: props.showIndex,
+      useDotIndex: props.useDotIndex,
+      showArrows: props.showArrows,
+      effect: props.effect,
+      autoplay: props.autoplay,
+      enableKeyboard: props.enableKeyboard,
+      slides: props.slides.length > 0 ? props.slides : props.children
+    };
 
-		_this.runSlideShow = _this.runSlideShow.bind(_this);
-		_this.autoSlideshow = _this.autoSlideshow.bind(_this);
-		_this.restartSlideshow = _this.restartSlideshow.bind(_this);
-		_this.increaseCount = _this.increaseCount.bind(_this);
-		_this.decreaseCount = _this.decreaseCount.bind(_this);
-		_this.handleKeyboard = _this.handleKeyboard.bind(_this);
-		return _this;
-	}
+    _this.runSlideShow = _this.runSlideShow.bind(_this);
+    _this.autoSlideshow = _this.autoSlideshow.bind(_this);
+    _this.restartSlideshow = _this.restartSlideshow.bind(_this);
+    _this.increaseCount = _this.increaseCount.bind(_this);
+    _this.decreaseCount = _this.decreaseCount.bind(_this);
+    _this.handleKeyboard = _this.handleKeyboard.bind(_this);
+    return _this;
+  }
 
-	_createClass(Slideshow, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
+  _createClass(Slideshow, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.state.autoplay) this.runSlideShow();
 
-			if (this.state.autoplay) this.runSlideShow();
+      if (this.state.enableKeyboard) document.addEventListener('keydown', this.handleKeyboard);
+    }
+  }, {
+    key: 'handleKeyboard',
+    value: function handleKeyboard(e) {
+      e.keyCode === 37 ? this.decreaseCount() : e.keyCode === 39 ? this.increaseCount() : null;
+    }
+  }, {
+    key: 'runSlideShow',
+    value: function runSlideShow() {
+      var intervalId = setInterval(this.autoSlideshow, this.state.slideInterval);
+      this.setState({
+        intervalId: intervalId
+      });
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(this.state.intervalId);
+      document.removeEventListener('keydown', this.handleKeyboard);
+    }
+  }, {
+    key: 'autoSlideshow',
+    value: function autoSlideshow() {
+      this.setState({
+        currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
+      });
+    }
+  }, {
+    key: 'restartSlideshow',
+    value: function restartSlideshow() {
+      clearInterval(this.state.intervalId);
+      this.runSlideShow();
+    }
+  }, {
+    key: 'increaseCount',
+    value: function increaseCount() {
+      this.state.effect === 'left' ? this.setState({
+        effect: 'right'
+      }) : this.state.effect === 'bounce-left' ? this.setState({
+        effect: 'bounce-right'
+      }) : null;
 
-			if (this.state.enableKeyboard) document.addEventListener('keydown', this.handleKeyboard);
-		}
-	}, {
-		key: 'handleKeyboard',
-		value: function handleKeyboard(e) {
-			e.keyCode === 37 ? this.decreaseCount() : e.keyCode === 39 ? this.increaseCount() : null;
-		}
-	}, {
-		key: 'runSlideShow',
-		value: function runSlideShow() {
-			var intervalId = setInterval(this.autoSlideshow, this.state.slideInterval);
-			this.setState({
-				intervalId: intervalId
-			});
-		}
-	}, {
-		key: 'componentWillUnmount',
-		value: function componentWillUnmount() {
-			clearInterval(this.state.intervalId);
-			document.removeEventListener('keydown', this.handleKeyboard);
-		}
-	}, {
-		key: 'autoSlideshow',
-		value: function autoSlideshow() {
-			this.setState({
-				currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
-			});
-		}
-	}, {
-		key: 'restartSlideshow',
-		value: function restartSlideshow() {
-			clearInterval(this.state.intervalId);
-			this.runSlideShow();
-		}
-	}, {
-		key: 'increaseCount',
-		value: function increaseCount() {
+      this.state.autoplay ? this.restartSlideshow() : null;
+      this.setState({
+        currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
+      });
+    }
+  }, {
+    key: 'decreaseCount',
+    value: function decreaseCount() {
+      this.state.effect === 'right' ? this.setState({
+        effect: 'left'
+      }) : this.state.effect === 'bounce-right' ? this.setState({
+        effect: 'bounce-left'
+      }) : null;
 
-			this.state.effect === 'left' ? this.setState({
-				effect: 'right'
-			}) : this.state.effect === 'bounce-left' ? this.setState({
-				effect: 'bounce-right'
-			}) : null;
+      this.state.autoplay ? this.restartSlideshow() : null;
 
-			this.state.autoplay ? this.restartSlideshow() : null;
-			this.setState({
-				currentSlide: (this.state.currentSlide + 1) % this.state.slides.length
-			});
-		}
-	}, {
-		key: 'decreaseCount',
-		value: function decreaseCount() {
+      var currentSlide = void 0;
+      currentSlide = this.state.currentSlide === 0 ? this.state.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
+      this.setState({
+        currentSlide: currentSlide
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-			this.state.effect === 'right' ? this.setState({
-				effect: 'left'
-			}) : this.state.effect === 'bounce-right' ? this.setState({
-				effect: 'bounce-left'
-			}) : null;
-
-			this.state.autoplay ? this.restartSlideshow() : null;
-
-			var currentSlide = void 0;
-			currentSlide = this.state.currentSlide === 0 ? this.state.slides.length - 1 : currentSlide = this.state.currentSlide - 1;
-			this.setState({
-				currentSlide: currentSlide
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this2 = this;
-
-			var _state = this.state,
-			    slides = _state.slides,
-			    showIndex = _state.showIndex,
-			    useDotIndex = _state.useDotIndex,
-			    effect = _state.effect,
-			    showArrows = _state.showArrows;
+      var _state = this.state,
+          slides = _state.slides,
+          showIndex = _state.showIndex,
+          useDotIndex = _state.useDotIndex,
+          effect = _state.effect,
+          showArrows = _state.showArrows;
 
 
-			var slideEffect = effect === undefined ? 'fade' : effect;
-			var slideShowSlides = void 0;
-			var slideShowIndex = void 0;
+      var slideEffect = effect === undefined ? 'fade' : effect;
+      var slideShowSlides = void 0;
+      var slideShowIndex = void 0;
 
-			if (!this.props.children) {
-				slideShowSlides = slides.map(function (slide, i) {
-					return _react2.default.createElement('li', { className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? "showing-" + slideEffect : ""), key: i, style: { backgroundImage: 'url(' + slide + ')' } });
-				});
-			} else {
-				slideShowSlides = slides.map(function (slide, i) {
-					return _react2.default.createElement(
-						'li',
-						{ className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? "showing-" + slideEffect : ""), key: i },
-						slide
-					);
-				});
-			}
+      if (!this.props.children) {
+        slideShowSlides = slides.map(function (slide, i) {
+          return _react2.default.createElement('li', {
+            className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? 'showing-' + slideEffect : ''),
+            key: i,
+            style: { backgroundImage: 'url(' + slide + ')' }
+          });
+        });
+      } else {
+        slideShowSlides = slides.map(function (slide, i) {
+          return _react2.default.createElement(
+            'li',
+            {
+              className: 'slide ' + effect + ' ' + (_this2.state.currentSlide === i ? 'showing-' + slideEffect : ''),
+              key: i
+            },
+            slide
+          );
+        });
+      }
 
-			if (useDotIndex) {
-				slideShowIndex = _react2.default.createElement(
-					'div',
-					{ className: 'show-index is-dot' },
-					slides.map(function (slide, i) {
-						return _react2.default.createElement('span', { className: 'dot ' + (_this2.state.currentSlide === i ? "is-active" : ""), key: 'dot' + i });
-					})
-				);
-			} else {
-				slideShowIndex = _react2.default.createElement(
-					'div',
-					{ className: 'show-index is-text' },
-					_react2.default.createElement(
-						'p',
-						null,
-						this.state.currentSlide + 1 + ' / ' + slides.length
-					)
-				);
-			}
+      if (useDotIndex) {
+        slideShowIndex = _react2.default.createElement(
+          'div',
+          { className: 'show-index is-dot' },
+          slides.map(function (slide, i) {
+            return _react2.default.createElement('span', {
+              className: 'dot ' + (_this2.state.currentSlide === i ? 'is-active' : ''),
+              key: 'dot' + i
+            });
+          })
+        );
+      } else {
+        slideShowIndex = _react2.default.createElement(
+          'div',
+          { className: 'show-index is-text' },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.currentSlide + 1 + ' / ' + slides.length
+          )
+        );
+      }
 
-			return _react2.default.createElement(
-				'div',
-				{ style: { position: 'absolute', height: this.props.height || '100%', width: this.props.width || '100%' } },
-				_react2.default.createElement(
-					'div',
-					{ className: 'slideshow-container' },
-					_react2.default.createElement(
-						'ul',
-						{ className: 'slides' },
-						slideShowSlides
-					),
-					showArrows && _react2.default.createElement(_Arrows2.default, { decreaseCount: this.decreaseCount, increaseCount: this.increaseCount }),
-					showIndex && slideShowIndex
-				)
-			);
-		}
-	}]);
+      return _react2.default.createElement(
+        'div',
+        {
+          style: {
+            position: 'absolute',
+            height: this.props.height || '100%',
+            width: this.props.width || '100%'
+          }
+        },
+        _react2.default.createElement(
+          'div',
+          { className: 'slideshow-container' },
+          _react2.default.createElement(
+            'ul',
+            { className: 'slides' },
+            slideShowSlides
+          ),
+          showArrows && _react2.default.createElement(_Arrows2.default, {
+            decreaseCount: this.decreaseCount,
+            increaseCount: this.increaseCount
+          }),
+          showIndex && slideShowIndex
+        )
+      );
+    }
+  }]);
 
-	return Slideshow;
+  return Slideshow;
 }(_react.Component);
+
+Slideshow.defaultProps = {
+  showIndex: false,
+  showArrows: true,
+  autoplay: true,
+  enableKeyboard: true,
+  useDotIndex: false,
+  slideInterval: 2000,
+  defaultIndex: 0,
+  effect: 'fade',
+  slides: [],
+  height: '100%',
+  width: '100%'
+};
 
 exports.default = Slideshow;
 
@@ -351,7 +386,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "html,\r\nbody {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbackground: #000;\r\n}\r\n\r\n.slideshow-container {\r\n\tposition: absolute;\r\n\theight: 100%;\r\n\twidth: 100%;\r\n}\r\n\r\n.slides {\r\n\tposition: relative;\r\n\theight: 100%;\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n\tlist-style-type: none;\r\n\toverflow: hidden;\r\n}\r\n\r\n.slide {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n\ttop: 0;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\topacity: 0;\r\n\tz-index: 1;\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbackground-repeat: no-repeat;\r\n\tbackground-size: cover;\r\n\tbackground-position: center;\r\n}\r\n\r\n.showing-fade {\r\n\topacity: 1;\r\n\tz-index: 2;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-fade;\r\n}\r\n\r\n@keyframes slide-fade {\r\n\tfrom {\r\n\t\topacity: 0;\r\n\t}\r\n\r\n\tto {\r\n\t\topacity: 1;\r\n\t}\r\n}\r\n\r\n.showing-right {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-right;\r\n}\r\n\r\n\r\n@keyframes slide-right {\r\n\tfrom {\r\n\t\tleft: -50%;\r\n\t}\r\n\r\n\tto {\r\n\t\tleft: 0;\r\n\t}\r\n}\r\n\r\n.showing-left {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-left;\r\n}\r\n\r\n@keyframes slide-left {\r\n\tfrom {\r\n\t\tleft: 100%;\r\n\t}\r\n\r\n\tto {\r\n\t\tleft: 0;\r\n\t}\r\n}\r\n\r\n.showing-top {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-top;\r\n}\r\n\r\n@keyframes slide-top {\r\n\tfrom {\r\n\t\ttop: 100%;\r\n\t}\r\n\r\n\tto {\r\n\t\ttop: 0;\r\n\t}\r\n}\r\n\r\n.showing-bottom {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-bottom;\r\n}\r\n\r\n@keyframes slide-bottom {\r\n\tfrom {\r\n\t\ttop: -100%;\r\n\t}\r\n\r\n\tto {\r\n\t\ttop: 0;\r\n\t}\r\n}\r\n\r\n.showing-bounce-left {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-bounce-left;\r\n}\r\n\r\n@keyframes slide-bounce-left {\r\n\t0%{\r\n\t\tleft: 100%;\r\n\t}\r\n\t50%{\r\n\t\tleft: -20%;\r\n\t}\r\n\t100%{\r\n\t\tleft: 0;\r\n\t}\r\n}\r\n\r\n.showing-bounce-right {\r\n\topacity: 1;\r\n\tanimation-duration: 1s;\r\n\tanimation-name: slide-bounce-right;\r\n}\r\n\r\n@keyframes slide-bounce-right {\r\n\t0%{\r\n\t\tleft: -100%;\r\n\t}\r\n\t50%{\r\n\t\tleft: 20%;\r\n\t}\r\n\t100%{\r\n\t\tleft: 0;\r\n\t}\r\n}\r\n\r\n.show-index.is-text{\r\n\tcolor: #fff;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tz-index: 100;\r\n\tleft: 50%;\r\n\tfont-size: 28px;\r\n\tfont-family: 'Slabo 27px', serif;\r\n}\r\n\r\n.show-index.is-dot {\r\n\tcolor: #fff;\r\n\tposition: absolute;\r\n\tbottom: 0;\r\n\tz-index: 100;\r\n\tleft: 50%;\r\n\tfont-size: 28px;\r\n\tfont-family: 'Slabo 27px', serif;\r\n\tdisplay: flex;\r\n}\r\n\r\n.show-index.is-dot .dot {\r\n\twidth: 10px;\r\n\theight: 10px;\r\n\tmargin: 0 3px 3rem 3px;\r\n\tbackground-color: white;\r\n\tborder-radius: 50%;\r\n\topacity: 0.5;\r\n} \r\n\r\n.show-index.is-dot .dot.is-active {\r\n\topacity: 1;\r\n}\r\n\r\nbutton:focus {\r\n    outline: none;\r\n}\r\n\r\n.btn-arrow {\r\n\tcolor: transparent;\r\n\tdisplay: block;\r\n\tfont-size: 5px;\r\n\tline-height: 0;\r\n\t-moz-transition: all 0.3s;\r\n\t-o-transition: all 0.3s;\r\n\t-webkit-transition: all 0.3s;\r\n\ttransition: all 0.3s;\r\n\tposition: absolute;\r\n\ttop: 50%;\r\n\tz-index: 10;\r\n\tcursor: pointer;\r\n\theight: 50px;\r\n\twidth: 50px;\r\n\tborder-radius: 50%;\r\n\tpadding: 5px;\r\n\tz-index: 10000;\r\n}\r\n\r\n.btn-arrow:hover, .btn-arrow:focus {\r\n\tbackground: rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n.btn-arrow:hover::before, .btn-arrow:hover::after, .btn-arrow:focus::before, .btn-arrow:focus::after {\r\n\tbackground: rgba(256, 256, 256, 0.5);\r\n}\r\n\r\n.btn-arrow::before {\r\n\tcontent: '';\r\n\tdisplay: block;\r\n\tbackground: rgba(256,256,256, 0.6);\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\twidth: 6em;\r\n\theight: 2em;\r\n}\r\n\r\n.btn-arrow::after {\r\n\tcontent: '';\r\n\tdisplay: block;\r\n\tbackground: rgba(256,256,256, 0.6);\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\twidth: 2em;\r\n\theight: 6em;\r\n}\r\n.btn-arrow.btn-arrow-left {\r\n\t-moz-transform: rotate(-45deg);\r\n\t-ms-transform: rotate(-45deg);\r\n\t-webkit-transform: rotate(-45deg);\r\n\ttransform: rotate(-45deg);\r\n\tleft: 5%;\r\n}\r\n.btn-arrow.btn-arrow-left::before, .btn-arrow.btn-arrow-left::after {\r\n\ttop: 18px;\r\n\tleft: 18px;\r\n}\r\n.btn-arrow.btn-arrow-right {\r\n\t-moz-transform: rotate(135deg);\r\n\t-ms-transform: rotate(135deg);\r\n\t-webkit-transform: rotate(135deg);\r\n\ttransform: rotate(135deg);\r\n\tright: 5%;\r\n}\r\n.btn-arrow.btn-arrow-right::before, .btn-arrow.btn-arrow-right::after {\r\n\ttop: 18px;\r\n\tleft: 18px;\r\n}\r\n", ""]);
+exports.push([module.i, "html,\r\nbody {\r\n  padding: 0;\r\n  margin: 0;\r\n  background: #000;\r\n}\r\n\r\n.slideshow-container {\r\n  position: absolute;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.slides {\r\n  position: relative;\r\n  height: 100%;\r\n  padding: 0px;\r\n  margin: 0px;\r\n  list-style-type: none;\r\n  overflow: hidden;\r\n}\r\n\r\n.slide {\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  opacity: 0;\r\n  z-index: 1;\r\n  padding: 0;\r\n  margin: 0;\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  background-position: center;\r\n}\r\n\r\n.showing-fade {\r\n  opacity: 1;\r\n  z-index: 2;\r\n  animation-duration: 1s;\r\n  animation-name: slide-fade;\r\n}\r\n\r\n@keyframes slide-fade {\r\n  from {\r\n    opacity: 0;\r\n  }\r\n\r\n  to {\r\n    opacity: 1;\r\n  }\r\n}\r\n\r\n.showing-right {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-right;\r\n}\r\n\r\n@keyframes slide-right {\r\n  from {\r\n    left: -50%;\r\n  }\r\n\r\n  to {\r\n    left: 0;\r\n  }\r\n}\r\n\r\n.showing-left {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-left;\r\n}\r\n\r\n@keyframes slide-left {\r\n  from {\r\n    left: 100%;\r\n  }\r\n\r\n  to {\r\n    left: 0;\r\n  }\r\n}\r\n\r\n.showing-top {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-top;\r\n}\r\n\r\n@keyframes slide-top {\r\n  from {\r\n    top: 100%;\r\n  }\r\n\r\n  to {\r\n    top: 0;\r\n  }\r\n}\r\n\r\n.showing-bottom {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-bottom;\r\n}\r\n\r\n@keyframes slide-bottom {\r\n  from {\r\n    top: -100%;\r\n  }\r\n\r\n  to {\r\n    top: 0;\r\n  }\r\n}\r\n\r\n.showing-bounce-left {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-bounce-left;\r\n}\r\n\r\n@keyframes slide-bounce-left {\r\n  0% {\r\n    left: 100%;\r\n  }\r\n  50% {\r\n    left: -20%;\r\n  }\r\n  100% {\r\n    left: 0;\r\n  }\r\n}\r\n\r\n.showing-bounce-right {\r\n  opacity: 1;\r\n  animation-duration: 1s;\r\n  animation-name: slide-bounce-right;\r\n}\r\n\r\n@keyframes slide-bounce-right {\r\n  0% {\r\n    left: -100%;\r\n  }\r\n  50% {\r\n    left: 20%;\r\n  }\r\n  100% {\r\n    left: 0;\r\n  }\r\n}\r\n\r\n.show-index.is-text {\r\n  color: #fff;\r\n  position: absolute;\r\n  bottom: 0;\r\n  z-index: 100;\r\n  left: 50%;\r\n  font-size: 28px;\r\n  font-family: 'Slabo 27px', serif;\r\n}\r\n\r\n.show-index.is-dot {\r\n  color: #fff;\r\n  position: absolute;\r\n  bottom: 0;\r\n  z-index: 100;\r\n  left: 50%;\r\n  font-size: 28px;\r\n  font-family: 'Slabo 27px', serif;\r\n  display: flex;\r\n}\r\n\r\n.show-index.is-dot .dot {\r\n  width: 10px;\r\n  height: 10px;\r\n  margin: 0 3px 3rem 3px;\r\n  background-color: white;\r\n  border-radius: 50%;\r\n  opacity: 0.5;\r\n}\r\n\r\n.show-index.is-dot .dot.is-active {\r\n  opacity: 1;\r\n}\r\n\r\nbutton:focus {\r\n  outline: none;\r\n}\r\n\r\n.btn-arrow {\r\n  color: transparent;\r\n  display: block;\r\n  font-size: 5px;\r\n  line-height: 0;\r\n  -moz-transition: all 0.3s;\r\n  -o-transition: all 0.3s;\r\n  -webkit-transition: all 0.3s;\r\n  transition: all 0.3s;\r\n  position: absolute;\r\n  top: 50%;\r\n  z-index: 10;\r\n  cursor: pointer;\r\n  height: 50px;\r\n  width: 50px;\r\n  border-radius: 50%;\r\n  padding: 5px;\r\n  z-index: 10000;\r\n}\r\n\r\n.btn-arrow:hover,\r\n.btn-arrow:focus {\r\n  background: rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n.btn-arrow:hover::before,\r\n.btn-arrow:hover::after,\r\n.btn-arrow:focus::before,\r\n.btn-arrow:focus::after {\r\n  background: rgba(256, 256, 256, 0.5);\r\n}\r\n\r\n.btn-arrow::before {\r\n  content: '';\r\n  display: block;\r\n  background: rgba(256, 256, 256, 0.6);\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 6em;\r\n  height: 2em;\r\n}\r\n\r\n.btn-arrow::after {\r\n  content: '';\r\n  display: block;\r\n  background: rgba(256, 256, 256, 0.6);\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  width: 2em;\r\n  height: 6em;\r\n}\r\n.btn-arrow.btn-arrow-left {\r\n  -moz-transform: rotate(-45deg);\r\n  -ms-transform: rotate(-45deg);\r\n  -webkit-transform: rotate(-45deg);\r\n  transform: rotate(-45deg);\r\n  left: 5%;\r\n}\r\n.btn-arrow.btn-arrow-left::before,\r\n.btn-arrow.btn-arrow-left::after {\r\n  top: 18px;\r\n  left: 18px;\r\n}\r\n.btn-arrow.btn-arrow-right {\r\n  -moz-transform: rotate(135deg);\r\n  -ms-transform: rotate(135deg);\r\n  -webkit-transform: rotate(135deg);\r\n  transform: rotate(135deg);\r\n  right: 5%;\r\n}\r\n.btn-arrow.btn-arrow-right::before,\r\n.btn-arrow.btn-arrow-right::after {\r\n  top: 18px;\r\n  left: 18px;\r\n}\r\n", ""]);
 
 // exports
 
