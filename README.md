@@ -49,7 +49,7 @@ const Slideshow = require('react-slidez');
   useDotIndex
   slideInterval={2000}
   defaultIndex={1}
-  slides=['1.jpg', '2.jpg']
+  slides={['1.jpg', '2.jpg']}
   effect={'fade'}
   height={'100%'}
   width={'100%'}
