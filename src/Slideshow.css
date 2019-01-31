@@ -28,6 +28,11 @@
   background-position: center;
 }
 
+.showing-none {
+  opacity: 1;
+  z-index: 2;
+}
+
 .showing-fade {
   opacity: 1;
   z-index: 2;
