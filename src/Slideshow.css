@@ -169,6 +169,7 @@
   font-size: 28px;
   font-family: 'Slabo 27px', serif;
   display: flex;
+  transform: translate(-50%);
 }
 
 .show-index.is-dot .dot {

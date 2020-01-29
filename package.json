@@ -3,7 +3,10 @@
   "version": "0.0.30",
   "description": "React Slideshow Component",
   "main": "build/index.js",
-  "keywords": ["react", "slideshow"],
+  "keywords": [
+    "react",
+    "slideshow"
+  ],
   "peerDependencies": {
     "react": "^15.5.4"
   },
