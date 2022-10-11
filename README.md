@@ -50,9 +50,9 @@ const Slideshow = require('react-slidez');
   slideInterval={2000}
   defaultIndex={1}
   slides={['1.jpg', '2.jpg']}
-  effect={'fade'}
-  height={'100%'}
-  width={'100%'}
+  effect='fade'
+  height='100%'
+  width='100%'
 />
 ```
 
