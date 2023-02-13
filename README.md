@@ -32,9 +32,9 @@ npm install react-slidez --save
 | slideInterval  | Dictate the speed in ms at which the slides change                                                                                           | Integer | `2000`     |
 | defaultIndex   | Choose the index that you wish to start at                                                                                                   | Integer | `0`        |
 | slides         | The slides you pass into the component. This can be an array of images, or other components which are passed as children. See example below. | Array   | No default |
-| effect         | Choose the animation effect of your slideshow. Options include `fade`, `left`, `top`, `right`, `bottom`, `bounce-right`, `bounce-left`       | String  | `'fade'`   |
-| height         | Choose the height of the slideshow. Example `height={'50px'}` or `height={'50%'}`                                                            | String  | `'100%'`   |
-| width          | Choose the width of the slideshow. Example `width="50px"` or `width="50%"`                                                               | String  | `'100%'`   |
+| effect         | Choose the animation effect of your slideshow. Options include `fade`, `left`, `top`, `right`, `bottom`, `bounce-right`, `bounce-left`       | String  | `"fade"`   |
+| height         | Choose the height of the slideshow. Example `height={'50px'}` or `height={'50%'}`                                                            | String  | `"100%"`   |
+| width          | Choose the width of the slideshow. Example `width="50px"` or `width="50%"`                                                               | String  | `"100%"`   |
 
 ## Usage
 
@@ -49,7 +49,7 @@ const Slideshow = require('react-slidez');
   useDotIndex
   slideInterval={2000}
   defaultIndex={1}
-  slides={['1.jpg', '2.jpg']}
+  slides={["1.jpg", "2.jpg"]}
   effect="fade"
   height="100%"
   width="100%"
