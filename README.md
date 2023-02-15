@@ -65,7 +65,7 @@ const Slideshow = require("react-slidez");
   <ComponentOne />
   <ComponentTwo />
   <Checkout />
-</Slideshow>;
+</Slideshow>
 ```
 
 ## License
