@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "react": "^15.5.4",
-    "webpack": "^2.6.1"
+    "webpack": "^5.75.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
